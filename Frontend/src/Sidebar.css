@@ -1,0 +1,321 @@
+/* Nexora AI sidebar */
+.sidebar {
+  width: 296px;
+  height: 100vh;
+  height: 100dvh;
+  flex: 0 0 296px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 18px 16px;
+  overflow: hidden;
+  color: #f4f4f5;
+  background: #11111b;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+.newChatSidebar {
+  width: 100%;
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.16),
+    rgba(99, 102, 241, 0.08)
+  );
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.newChatSidebar:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.3),
+    rgba(99, 102, 241, 0.2)
+  );
+  border-color: #8b5cf6;
+  transform: translateY(-1px);
+}
+.newChatSidebar img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+.newChatSidebar span {
+  flex: 1;
+  text-align: left;
+  color: #e4e4eb;
+  font-size: 13px;
+  font-weight: 600;
+}
+.newChatSidebar i {
+  color: #a78bfa;
+  font-size: 17px;
+}
+.history {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 15px;
+}
+.history::before {
+  content: "Recent Chats";
+  display: block;
+  padding: 0 10px 13px;
+  color: #77778d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+.history li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 5px;
+  padding: 12px;
+  border-radius: 9px;
+  color: #b9b9c9;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  outline: none;
+}
+.history li i {
+  flex: 0 0 auto;
+  color: #89899f;
+  font-size: 14px;
+}
+.history li span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.history li:hover,
+.history li:focus-visible {
+  background: #242435;
+  color: #fff;
+}
+.history li.active {
+  padding-left: 9px;
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.17);
+  border-left: 3px solid #8b5cf6;
+}
+.history li.active i {
+  color: #a78bfa;
+}
+.history::-webkit-scrollbar {
+  width: 5px;
+}
+.history::-webkit-scrollbar-thumb {
+  background: #38384c;
+  border-radius: 10px;
+}
+.sidebarFooter {
+  flex: 0 0 auto;
+  padding: 15px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sidebarFooter p {
+  margin: 0;
+  color: #85859b;
+  font-size: 12px;
+}
+.sidebarMobileToggle,
+.sidebarOverlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1001;
+    width: min(84vw, 300px);
+    max-width: 300px;
+    height: 100vh;
+    height: 100dvh;
+    flex: none;
+    padding: 74px 16px 16px;
+    transform: translateX(-105%);
+    transition: transform 0.28s ease;
+    box-shadow: 12px 0 35px rgba(0, 0, 0, 0.3);
+  }
+  .sidebar.sidebarOpen {
+    transform: translateX(0);
+  }
+  .sidebarMobileToggle {
+    position: fixed;
+    top: 13px;
+    left: 13px;
+    z-index: 1003;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 10px;
+    background: #242435;
+    color: #c4b5fd;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  .sidebarOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+  }
+  .history {
+    margin-top: 24px;
+  }
+}
+@media (max-width: 480px) {
+  .sidebar {
+    width: 85vw;
+    max-width: 290px;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+  .newChatSidebar {
+    min-height: 52px;
+  }
+  .history li {
+    padding: 13px 10px;
+    font-size: 13px;
+  }
+}
+
+/* Thread title */
+
+.history li {
+  position: relative;
+  min-width: 0;
+}
+
+.threadTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Delete button */
+
+.deleteThreadBtn {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 7px;
+
+  background: transparent;
+  color: #85859b;
+
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.history li:hover .deleteThreadBtn,
+.history li.active .deleteThreadBtn {
+  opacity: 1;
+}
+
+.deleteThreadBtn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* Mobile: always show delete button */
+
+@media (max-width: 768px) {
+  .deleteThreadBtn {
+    opacity: 1;
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* Modern Toast Notification */
+
+.toastMessage {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 13px 20px;
+
+  background: #242435;
+  color: #f4f4f5;
+
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+
+  z-index: 2000;
+
+  animation: toastEnter 0.3s ease;
+}
+
+.toastMessage i {
+  color: #4ade80;
+  font-size: 17px;
+}
+
+.toastMessage.toastError i {
+  color: #f87171;
+}
+
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 480px) {
+  .toastMessage {
+    bottom: 20px;
+    width: max-content;
+    max-width: calc(100vw - 40px);
+    font-size: 12px;
+  }
+}
